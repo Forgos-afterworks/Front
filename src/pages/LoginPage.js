@@ -20,7 +20,7 @@ const LoginPage = ({history}) => {
             history.replace("/");
         }catch (e) {
             alert("Indentifiants invalides")
-            console.log(e)
+            console.log(e.toJSON())
         }
     }
 

@@ -9,6 +9,7 @@ const ListeProduitsPage = () => {
 
     const [produits, setProduits] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [titleCateg, setTitleCateg] = useState("Tous");
 
     const CustomToggle = React.forwardRef(({children, onClick}, ref) => (
         <a
@@ -63,8 +64,15 @@ const ListeProduitsPage = () => {
     const fetchProduits = async (categorie) => {
         try {
             let data;
-            if (categorie && categorie !== "all") data = await produitsAPI.getProductsByCategory(categorie["idCategorie"]);
-            else data = await produitsAPI.getProduits();
+            if (categorie && categorie !== "all") {
+                data = await produitsAPI.getProductsByCategory(categorie["idCategorie"]);
+
+                setTitleCateg(categorie["nom"]);
+            }
+            else {
+                data = await produitsAPI.getProduits();
+                setTitleCateg("Tous");
+            }
             setProduits(data);
         } catch (e) {
             console.log(e);
@@ -77,7 +85,7 @@ const ListeProduitsPage = () => {
     }, [])
 
     const _categories = categories.map((categorie) => (
-        <Button onClick={() => fetchProduits(categorie)} className="dropdown-item">{categorie["nomCategorie"]}</Button>
+        <Button onClick={() => fetchProduits(categorie)} className="dropdown-item">{categorie["nom"]}</Button>
     ))
 
     const _produits = produits.map((produit) => (
@@ -87,8 +95,8 @@ const ListeProduitsPage = () => {
                     produit["image"] || imageProduitDefault
                 }/>
                 <Card.Body>
-                    <Card.Title>{produit["nomProduit"]}</Card.Title>
-                    <Card.Text>Catégorie : {produit["idCategorie"]["nomCategorie"]}</Card.Text>
+                    <Card.Title>{produit["nom"]}</Card.Title>
+                    <Card.Text>Catégorie : {produit["idCategorie"]["nom"]}</Card.Text>
                 </Card.Body>
             </Card>
         </Link>
@@ -99,7 +107,7 @@ const ListeProduitsPage = () => {
             <h1>Liste de nos produits</h1>
             <Dropdown className="m-1 ms-5">
                 <Dropdown.Toggle as={CustomToggle}>
-                    <Button variant="white" size="sm" className="categoriesNav"><h3>Catégories</h3>
+                    <Button variant="white" size="sm" className="categoriesNav"><h3>Catégorie : {titleCateg}</h3>
                     </Button>
                 </Dropdown.Toggle>
 
