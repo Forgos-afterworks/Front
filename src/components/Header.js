@@ -30,14 +30,18 @@ const Header = ({history}) => {
                     <Nav>
                         <NavDropdown title={
                             context.isAuth &&
-                                (payload["prenom"] + " " + payload["nom"]) ||
-                                ("Compte")
+                            (payload["prenom"] + " " + payload["nom"]) ||
+                            ("Compte")
                         } id="basic-nav-dropdown">
                             {
-                                context.isAuth && (
+                                context.isAuth && AuthApi.getPayload()["rolePower"] > 0 && (
                                     <>
                                         <Link to="/admin" className="dropdown-item">Panel Administrateur</Link>
                                         <hr/>
+                                        <button onClick={handleLogOut} className="dropdown-item">Déconnexion</button>
+                                    </>
+                                ) || context.isAuth && (
+                                    <>
                                         <button onClick={handleLogOut} className="dropdown-item">Déconnexion</button>
                                     </>
                                 ) || (

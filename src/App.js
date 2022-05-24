@@ -47,23 +47,25 @@ function App() {
         <AuthContext.Provider value={authContextValue}>
             <BrowserRouter>
                 <HeaderWithRouter/>
-                <Switch>
-                    <Route exact path="/" component={AccueilPage}/>
-                    <Route exact path="/produits" component={ListeProduitsPage}/>
-                    <Route path="/produits/:idProduit" component={DetailProduitPage}/>
-                    <Route path="/login" component={LoginForm}/>
-                    <Route path="/register" component={DetailProduitPage}/>
-                    <PrivateRouteToLevelPower path={"/admin/createArticle"} component={CreateArticlePage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin/modifyArticle/:idArticle"} component={ModifyArticlePage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin/rubrique"} component={RubriquePage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin/modify-rubric/:idRubric"} component={ModifyRubricPage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin/gestion-employe"} component={GestionEmployePage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin/create-rubric"} component={CreateRubriquePage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin/modify-employe/:idEmploye"} component={ModifyEmployePage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin/create-redacteur"} component={CreateRedacteurPage} levelPower={0}/>
-                    <PrivateRouteToLevelPower path={"/admin"} component={PanelAdminPage} levelPower={0}/>
-                    <Route component={AccueilPage}/>
-                </Switch>
+                <div className="container">
+                    <Switch>
+                        <Route exact path="/" component={AccueilPage}/>
+                        <Route exact path="/produits" component={ListeProduitsPage}/>
+                        <Route path="/produits/:idProduit" component={DetailProduitPage}/>
+                        <Route path="/login" component={LoginForm}/>
+                        <Route path="/register" component={DetailProduitPage}/>
+                        <PrivateRouteToLevelPower path={"/admin/createArticle"} component={CreateArticlePage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin/modifyArticle/:idArticle"} component={ModifyArticlePage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin/rubrique"} component={RubriquePage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin/modify-rubric/:idRubric"} component={ModifyRubricPage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin/gestion-employe"} component={GestionEmployePage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin/create-rubric"} component={CreateRubriquePage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin/modify-employe/:idEmploye"} component={ModifyEmployePage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin/create-redacteur"} component={CreateRedacteurPage} levelPower={0}/>
+                        <PrivateRouteToLevelPower path={"/admin"} component={PanelAdminPage} levelPower={0}/>
+                        <Route component={AccueilPage}/>
+                    </Switch>
+                </div>
             </BrowserRouter>
         </AuthContext.Provider>
 
